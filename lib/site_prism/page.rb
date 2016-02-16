@@ -15,6 +15,10 @@ module SitePrism
       @page || Capybara.current_session
     end
 
+    def root_element
+      self.page
+    end
+
     # Loads the page.
     # Executes the block, if given, after running load validations on the page.
     #
