@@ -16,7 +16,7 @@ module SitePrism
     end
 
     def root_element
-      self.page
+      page
     end
 
     # Loads the page.
