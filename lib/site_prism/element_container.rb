@@ -6,7 +6,7 @@ module SitePrism
       build element_name, *find_args do
         define_method element_name.to_s do |*runtime_args, &element_block|
           self.class.raise_if_block(self, element_name.to_s, !element_block.nil?)
-          root_element.find_first(*find_args, *runtime_args)
+          root_element.first(*find_args, *runtime_args)
         end
       end
     end
@@ -15,7 +15,7 @@ module SitePrism
       build collection_name, *find_args do
         define_method collection_name.to_s do |*runtime_args, &element_block|
           self.class.raise_if_block(self, collection_name.to_s, !element_block.nil?)
-          root_element.find_all(*find_args, *runtime_args)
+          root_element.all(*find_args, *runtime_args)
         end
       end
     end
@@ -26,7 +26,7 @@ module SitePrism
       build section_name, *find_args do
         define_method section_name do |*runtime_args, &element_block|
           self.class.raise_if_block(self, section_name.to_s, !element_block.nil?)
-          section_class.new self, root_element.find_first(*find_args, *runtime_args)
+          section_class.new self, root_element.first(*find_args, *runtime_args)
         end
       end
     end
@@ -36,7 +36,7 @@ module SitePrism
       build section_collection_name, *find_args do
         define_method section_collection_name do |*runtime_args, &element_block|
           self.class.raise_if_block(self, section_collection_name.to_s, !element_block.nil?)
-          root_element.find_all(*find_args, *runtime_args).map do |element|
+          root_element.all(*find_args, *runtime_args).map do |element|
             section_class.new self, element
           end
         end
